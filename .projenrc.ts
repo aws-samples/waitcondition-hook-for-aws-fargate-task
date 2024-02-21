@@ -14,7 +14,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-cdk-lib@2.109.0',
     'constructs@10.0.5',
   ],
-  license: 'Apache-2.0',
+  license: 'MIT-0',
   description: PROJ_DESCRIPTION,
   depsUpgradeOptions: {
     workflowOptions: {
@@ -30,6 +30,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   stability: 'experimental',
 });
-const common_exclude = ['cdk.out/*', 'cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage', 'cdk.context.json'];
+const common_exclude = ['cdk.out/*', 'cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage', 'cdk.context.json', 'yarn.lock', 'package-lock.json'];
 project.gitignore.exclude(...common_exclude);
 project.synth();

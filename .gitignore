@@ -54,3 +54,5 @@ cdk.out
 yarn-error.log
 coverage
 cdk.context.json
+yarn.lock
+package-lock.json

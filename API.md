@@ -2,39 +2,39 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
-### FargateRunner <a name="FargateRunner" id="fargate-runner.FargateRunner"></a>
+### FargateRunner <a name="FargateRunner" id="waitcondition-hook-for-aws-fargate-task.FargateRunner"></a>
 
-#### Initializers <a name="Initializers" id="fargate-runner.FargateRunner.Initializer"></a>
+#### Initializers <a name="Initializers" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer"></a>
 
 ```typescript
-import { FargateRunner } from 'fargate-runner'
+import { FargateRunner } from 'waitcondition-hook-for-aws-fargate-task'
 
 new FargateRunner(scope: Construct, id: string, props: FargateRunnerProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#fargate-runner.FargateRunner.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#fargate-runner.FargateRunner.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#fargate-runner.FargateRunner.Initializer.parameter.props">props</a></code> | <code><a href="#fargate-runner.FargateRunnerProps">FargateRunnerProps</a></code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer.parameter.props">props</a></code> | <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunnerProps">FargateRunnerProps</a></code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="fargate-runner.FargateRunner.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="fargate-runner.FargateRunner.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="fargate-runner.FargateRunner.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#fargate-runner.FargateRunnerProps">FargateRunnerProps</a>
+- *Type:* <a href="#waitcondition-hook-for-aws-fargate-task.FargateRunnerProps">FargateRunnerProps</a>
 
 ---
 
@@ -42,11 +42,11 @@ new FargateRunner(scope: Construct, id: string, props: FargateRunnerProps)
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#fargate-runner.FargateRunner.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.toString">toString</a></code> | Returns a string representation of this construct. |
 
 ---
 
-##### `toString` <a name="toString" id="fargate-runner.FargateRunner.toString"></a>
+##### `toString` <a name="toString" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.toString"></a>
 
 ```typescript
 public toString(): string
@@ -58,21 +58,21 @@ Returns a string representation of this construct.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#fargate-runner.FargateRunner.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="fargate-runner.FargateRunner.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.isConstruct"></a>
 
 ```typescript
-import { FargateRunner } from 'fargate-runner'
+import { FargateRunner } from 'waitcondition-hook-for-aws-fargate-task'
 
 FargateRunner.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
 
-###### `x`<sup>Required</sup> <a name="x" id="fargate-runner.FargateRunner.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -84,12 +84,12 @@ Any object.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#fargate-runner.FargateRunner.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#fargate-runner.FargateRunner.property.waitConditionHanlderEndpoint">waitConditionHanlderEndpoint</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunner.property.waitConditionHanlderEndpoint">waitConditionHanlderEndpoint</a></code> | <code>string</code> | *No description.* |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="fargate-runner.FargateRunner.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -101,7 +101,7 @@ The tree node.
 
 ---
 
-##### `waitConditionHanlderEndpoint`<sup>Required</sup> <a name="waitConditionHanlderEndpoint" id="fargate-runner.FargateRunner.property.waitConditionHanlderEndpoint"></a>
+##### `waitConditionHanlderEndpoint`<sup>Required</sup> <a name="waitConditionHanlderEndpoint" id="waitcondition-hook-for-aws-fargate-task.FargateRunner.property.waitConditionHanlderEndpoint"></a>
 
 ```typescript
 public readonly waitConditionHanlderEndpoint: string;
@@ -114,12 +114,12 @@ public readonly waitConditionHanlderEndpoint: string;
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### FargateRunnerProps <a name="FargateRunnerProps" id="fargate-runner.FargateRunnerProps"></a>
+### FargateRunnerProps <a name="FargateRunnerProps" id="waitcondition-hook-for-aws-fargate-task.FargateRunnerProps"></a>
 
-#### Initializer <a name="Initializer" id="fargate-runner.FargateRunnerProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.Initializer"></a>
 
 ```typescript
-import { FargateRunnerProps } from 'fargate-runner'
+import { FargateRunnerProps } from 'waitcondition-hook-for-aws-fargate-task'
 
 const fargateRunnerProps: FargateRunnerProps = { ... }
 ```
@@ -128,14 +128,14 @@ const fargateRunnerProps: FargateRunnerProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#fargate-runner.FargateRunnerProps.property.fargateTaskDef">fargateTaskDef</a></code> | <code>aws-cdk-lib.aws_ecs.TaskDefinition</code> | *No description.* |
-| <code><a href="#fargate-runner.FargateRunnerProps.property.count">count</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#fargate-runner.FargateRunnerProps.property.timeout">timeout</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#fargate-runner.FargateRunnerProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.fargateTaskDef">fargateTaskDef</a></code> | <code>aws-cdk-lib.aws_ecs.TaskDefinition</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.count">count</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.timeout">timeout</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
 
 ---
 
-##### `fargateTaskDef`<sup>Required</sup> <a name="fargateTaskDef" id="fargate-runner.FargateRunnerProps.property.fargateTaskDef"></a>
+##### `fargateTaskDef`<sup>Required</sup> <a name="fargateTaskDef" id="waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.fargateTaskDef"></a>
 
 ```typescript
 public readonly fargateTaskDef: TaskDefinition;
@@ -145,7 +145,7 @@ public readonly fargateTaskDef: TaskDefinition;
 
 ---
 
-##### `count`<sup>Optional</sup> <a name="count" id="fargate-runner.FargateRunnerProps.property.count"></a>
+##### `count`<sup>Optional</sup> <a name="count" id="waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.count"></a>
 
 ```typescript
 public readonly count: number;
@@ -155,7 +155,7 @@ public readonly count: number;
 
 ---
 
-##### `timeout`<sup>Optional</sup> <a name="timeout" id="fargate-runner.FargateRunnerProps.property.timeout"></a>
+##### `timeout`<sup>Optional</sup> <a name="timeout" id="waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.timeout"></a>
 
 ```typescript
 public readonly timeout: string;
@@ -165,7 +165,7 @@ public readonly timeout: string;
 
 ---
 
-##### `vpc`<sup>Optional</sup> <a name="vpc" id="fargate-runner.FargateRunnerProps.property.vpc"></a>
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="waitcondition-hook-for-aws-fargate-task.FargateRunnerProps.property.vpc"></a>
 
 ```typescript
 public readonly vpc: IVpc;

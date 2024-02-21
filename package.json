@@ -1,5 +1,5 @@
 {
-  "name": "fargate-runner",
+  "name": "waitcondition-hook-for-aws-fargate-task",
   "description": "AWS CDK Construct that run a Fargate task. Stack will process only when Fargate task executed successfully and all containers exit with code 0, otherwise rollback",
   "repository": {
     "type": "git",
@@ -69,10 +69,10 @@
     "cdk",
     "ecs",
     "fargate",
-    "fargate-runner"
+    "waitcondition-hook-for-aws-fargate-task"
   ],
   "main": "lib/index.js",
-  "license": "Apache-2.0",
+  "license": "MIT-0",
   "version": "0.0.0",
   "jest": {
     "testMatch": [
@@ -120,8 +120,8 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "fargate-runner",
-        "module": "cdk_fargate_runner"
+        "distName": "waitcondition-hook-for-aws-fargate-task",
+        "module": "waitcondition-hook-for-aws-fargate-task"
       }
     },
     "tsc": {
