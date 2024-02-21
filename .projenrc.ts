@@ -1,13 +1,13 @@
 import { awscdk } from 'projen';
 const PROJ_DESCRIPTION = 'AWS CDK Construct that run a Fargate task. Stack will process only when Fargate task executed successfully and all containers exit with code 0, otherwise rollback';
-const PROJECT_NAME = 'fargate-runner';
+const PROJECT_NAME = 'waitcondition-hook-for-aws-fargate-task';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Stan Fan',
   authorAddress: 'fanhongy@amazon.com',
   cdkVersion: '2.109.0',
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.0.0',
-  name: 'fargate-runner',
+  name: PROJECT_NAME,
   projenrcTs: true,
   repositoryUrl: 'https://github.com/fanhongy/fargate-runner.git',
   deps: [
@@ -21,12 +21,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
       labels: ['auto-approve'],
     },
   },
-  keywords: ['aws', 'cdk', 'fargate', 'ecs', 'fargate-runner'],
+  keywords: ['aws', 'cdk', 'fargate', 'ecs', PROJECT_NAME],
   majorVersion: 1,
   packageName: PROJECT_NAME,
   publishToPypi: {
     distName: PROJECT_NAME,
-    module: 'cdk_fargate_runner',
+    module: PROJECT_NAME,
   },
   stability: 'experimental',
 });

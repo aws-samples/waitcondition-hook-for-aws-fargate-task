@@ -1,4 +1,4 @@
-# Fargate Runner
+# Waitcondition Hook for AWS Fargate task
 This module will create an ECS cluster and run a Fargate task as you defined. It will pause the CloudFormation Stack until the Fargate task is complete and success. 
 ## Usage:
 ```typescript
@@ -10,6 +10,7 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import { LogGroup } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 import { FargateRunner } from 'fargate-runner';
+import { Queue } from 'aws-cdk-lib/aws-sqs';
 
 export class FargateRunnerTestStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -24,9 +25,17 @@ export class FargateRunnerTestStack extends cdk.Stack {
             image: ecs.ContainerImage.fromEcrRepository(repo),
         });
         // Create the Fargate runner
-        new FargateRunner(this, 'MyRunner', {
+        const myFargateRunner = new FargateRunner(this, 'MyRunner', {
             fargateTaskDef: taskDefinition,
+            timeout: `${60 * 5}`,
+            vpc: vpc,
         });
+        // Create the SQS queue
+        const myQueue = new Queue(this, 'MyQueue', {});
+
+        // Add dependency
+        myQueue.node.addDependency(myFargateRunner);
+
     }
 }
 const app = new cdk.App();
@@ -38,10 +47,4 @@ const env = {
 new FargateRunnerTestStack(app, 'FargateRunnerTestStack', { env: env });
 ```
 
-### Construct Prop
-| Name     | Type      | Description           |
-|----------|-----------|-----------------------|
-| fargateTaskDef    | ecs.TaskDefinition     | Fargate task definition that you would like to run (required) |
-| timeout    | string     | the timeout of the task. Default 1 hour  |
-| count    | number     | the number of SUCCESS signal that stack expect to receive, each container will send 1 signal once complete. Default 1  |
-|vpc|ec2.IVpc|the VPC that ECS Cluster will be created. Default create new VPC|
+With AWS CDK script above (in typescript), it will create a AWS Faragate task and run in a ECS Cluster, with the the task definition that defined. The SQS queue which depends on the will be create only after the Fargate task execute complete and succeed (exit with EXIT CODE: 0)
