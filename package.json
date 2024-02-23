@@ -3,7 +3,7 @@
   "description": "AWS CDK Construct that run a Fargate task. Stack will process only when Fargate task executed successfully and all containers exit with code 0, otherwise rollback",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fanhongy/fargate-runner.git"
+    "url": "https://github.com/aws-samples/waitcondition-hook-for-aws-fargate-task.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -72,7 +72,7 @@
     "waitcondition-hook-for-aws-fargate-task"
   ],
   "main": "lib/index.js",
-  "license": "MIT-0",
+  "license": "Apache-2.0",
   "version": "0.0.0",
   "jest": {
     "testMatch": [

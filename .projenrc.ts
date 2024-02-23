@@ -9,12 +9,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
   jsiiVersion: '~5.0.0',
   name: PROJECT_NAME,
   projenrcTs: true,
-  repositoryUrl: 'https://github.com/fanhongy/fargate-runner.git',
+  repositoryUrl: 'https://github.com/aws-samples/waitcondition-hook-for-aws-fargate-task.git',
   deps: [
     'aws-cdk-lib@2.109.0',
     'constructs@10.0.5',
   ],
-  license: 'MIT-0',
   description: PROJ_DESCRIPTION,
   depsUpgradeOptions: {
     workflowOptions: {
