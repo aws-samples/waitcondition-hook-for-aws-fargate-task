@@ -14,6 +14,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-cdk-lib@2.109.0',
     'constructs@10.0.5',
   ],
+  license: 'MIT-0',
   description: PROJ_DESCRIPTION,
   depsUpgradeOptions: {
     workflowOptions: {
