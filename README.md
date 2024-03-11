@@ -9,7 +9,7 @@ import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import { LogGroup } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
-import { FargateRunner } from 'fargate-runner';
+import { FargateRunner } from 'waitcondition-hook-for-aws-fargate-task';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
 
 export class FargateRunnerTestStack extends cdk.Stack {

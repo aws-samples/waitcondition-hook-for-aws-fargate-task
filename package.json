@@ -31,7 +31,7 @@
     "projen": "npx projen"
   },
   "author": {
-    "name": "Stan Fan",
+    "name": "Amazon.com, Inc. or its affiliates. All Rights Reserved.",
     "email": "fanhongy@amazon.com",
     "organization": false
   },

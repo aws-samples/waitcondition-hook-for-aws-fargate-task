@@ -4854,9 +4854,9 @@ typescript@^5.3.3:
   integrity sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==
 
 typescript@next:
-  version "5.4.0-dev.20240220"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.0-dev.20240220.tgz#eace77e5b4fd613d17dd0e49d2aa924b2d9a3c89"
-  integrity sha512-mUiEcRGUeqXn0/xKi0K01LrBOJ4D1zbn5oVpvofeuo/QUTS/y4+r46h34STyDGMc2KnMYJcWUt2XMalady2J1A==
+  version "5.5.0-dev.20240310"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.0-dev.20240310.tgz#358ea39f5a12ad45c404316c8687229ca3a36911"
+  integrity sha512-5cC3ym7BKW/xa0duhXDdO/k3IP+1P6ZlJlZDtsyCJDIf/oX+J63a44EFvrMrpg6GH47JehqPHqJ6eaIlcyQE1Q==
 
 typescript@~3.9.10:
   version "3.9.10"

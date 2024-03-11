@@ -2,7 +2,7 @@ import { awscdk } from 'projen';
 const PROJ_DESCRIPTION = 'AWS CDK Construct that run a Fargate task. Stack will process only when Fargate task executed successfully and all containers exit with code 0, otherwise rollback';
 const PROJECT_NAME = 'waitcondition-hook-for-aws-fargate-task';
 const project = new awscdk.AwsCdkConstructLibrary({
-  author: 'Stan Fan',
+  author: 'Amazon.com, Inc. or its affiliates. All Rights Reserved.',
   authorAddress: 'fanhongy@amazon.com',
   cdkVersion: '2.109.0',
   defaultReleaseBranch: 'main',
