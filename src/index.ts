@@ -1,4 +1,4 @@
-import { Duration, CfnWaitCondition, CfnWaitConditionHandle } from 'aws-cdk-lib';
+import { Duration, CfnWaitCondition, CfnWaitConditionHandle, Stack } from 'aws-cdk-lib';
 import { IVpc, Vpc } from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as iam from 'aws-cdk-lib/aws-iam';
@@ -50,7 +50,7 @@ export class FargateRunner extends Construct {
     //add persmission of ecs:DescribeTasks to the execution role
     executionRole.addToPolicy(new iam.PolicyStatement({
       actions: ['ecs:DescribeTasks'],
-      resources: [`arn:aws:ecs:us-east-1:123456789:task/${cluster.clusterName}/*`],
+      resources: [`arn:aws:ecs:${Stack.of(this).region}:${Stack.of(this).account}:task/${cluster.clusterName}/*`],
       effect: iam.Effect.ALLOW,
       sid: 'CallbackDescribeTasks',
     }));
@@ -86,12 +86,14 @@ export class FargateRunner extends Construct {
         WAIT_CONDITION_HANDLE_URL: waitConditionHandler.ref,
       },
     });
+    // task definition
+    const taskDefinition = props.fargateTaskDef;
 
     // Define the ECS Run Task using Step Functions
     const runTask = new stepfunctions_tasks.EcsRunTask(this, 'RunFargateTask', {
       integrationPattern: stepfunctions.IntegrationPattern.RUN_JOB,
       cluster,
-      taskDefinition: props.fargateTaskDef,
+      taskDefinition,
       assignPublicIp: true,
       launchTarget: new stepfunctions_tasks.EcsFargateLaunchTarget({
         platformVersion: ecs.FargatePlatformVersion.LATEST,
@@ -114,10 +116,39 @@ export class FargateRunner extends Construct {
     // define the step function chain
     const chain = stepfunctions.Chain.start(runTask).next(lambdaTask);
 
+    // execution role for statemachine:
+    const stateMachineExecutionRole = new iam.Role(this, 'FargateRunnerStateMachineExecutionRole', {
+      assumedBy: new iam.ServicePrincipal('states.amazonaws.com'),
+    });
+    stateMachineExecutionRole.addToPolicy(new iam.PolicyStatement({
+      actions: ['lambda:InvokeFunction'],
+      resources: [callbackFunction.functionArn, errorHandlerFunction.functionArn],
+      effect: iam.Effect.ALLOW,
+      sid: 'InvokeLambda',
+    }));
+
+    // add iam:PassRole to the execution role
+    stateMachineExecutionRole.addToPolicy(new iam.PolicyStatement({
+      actions: ['iam:PassRole'],
+      resources: [executionRole.roleArn, stateMachineExecutionRole.roleArn],
+      effect: iam.Effect.ALLOW,
+      sid: 'PassRole',
+    }));
+
+    // add ecs:RunTask permission to the execution role
+    stateMachineExecutionRole.addToPolicy(new iam.PolicyStatement({
+      actions: ['ecs:RunTask'],
+      resources: [taskDefinition.taskDefinitionArn],
+      effect: iam.Effect.ALLOW,
+      sid: 'RunTask',
+    }));
+
+
     // define the statemachine
     const stateMachine = new stepfunctions.StateMachine(this, 'FargateRunnerStateMachine', {
       definitionBody: stepfunctions.DefinitionBody.fromChainable(chain),
       // timeout: timeoutDuration
+      // role: stateMachineExecutionRole,
     });
 
     //define triggering custom resource

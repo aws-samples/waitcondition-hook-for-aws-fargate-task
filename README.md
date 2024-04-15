@@ -1,5 +1,8 @@
 # Waitcondition Hook for AWS Fargate task
-This module will create an ECS cluster and run a Fargate task as you defined. It will pause the CloudFormation Stack until the Fargate task is complete and success. 
+WaitCondition hook for AWS Fargate tasks is a AWS CDK Construct that helps builders to run a AWS Fargate task with one or multiple container embedded into a CloudFormation lifecycle. You can use this construct add dependency between resources and the AWS Fargate task execution result (eg. Database migration, image build and packing, invoking third party/on-prem API). waitcondition-hook-for-aws-fargate-task construct will also handle the failure of the task, and rollback the CloudFormation stack after. 
+
+## Target architecture
+![Workflow](./image/workflow.png)
 ## Usage:
 ```typescript
 import * as cdk from 'aws-cdk-lib';
@@ -15,10 +18,11 @@ import { Queue } from 'aws-cdk-lib/aws-sqs';
 export class FargateRunnerTestStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
-
+        // Define the VPC
+        const vpc = Vpc(this, 'MyVpc')
         // Define the Fargate Task
         const taskDefinition = new ecs.FargateTaskDefinition(this, 'MyTask', {});
-        // import exiting ecr repo
+        // Import exiting ecr repo
         const repo = ecr.Repository.fromRepositoryName(this, 'MyRepo', 'RepoName');
         // Add a container to the task
         taskDefinition.addContainer('MyContainer', {
@@ -32,10 +36,8 @@ export class FargateRunnerTestStack extends cdk.Stack {
         });
         // Create the SQS queue
         const myQueue = new Queue(this, 'MyQueue', {});
-
         // Add dependency
         myQueue.node.addDependency(myFargateRunner);
-
     }
 }
 const app = new cdk.App();

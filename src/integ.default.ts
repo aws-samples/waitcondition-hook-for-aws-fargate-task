@@ -28,6 +28,7 @@ export class FargateRunnerTestStack extends cdk.Stack {
 
     // import exiting ecr repo
     const repo = ecr.Repository.fromRepositoryName(this, 'MyRepo', 'exit0');
+
     // Add a container to the task
     taskDefinition.addContainer('MyContainer', {
       image: ecs.ContainerImage.fromEcrRepository(repo),

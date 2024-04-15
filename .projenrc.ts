@@ -4,14 +4,14 @@ const PROJECT_NAME = 'waitcondition-hook-for-aws-fargate-task';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon.com, Inc. or its affiliates. All Rights Reserved.',
   authorAddress: 'fanhongy@amazon.com',
-  cdkVersion: '2.109.0',
+  cdkVersion: '2.137.0',
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.0.0',
   name: PROJECT_NAME,
   projenrcTs: true,
   repositoryUrl: 'https://github.com/aws-samples/waitcondition-hook-for-aws-fargate-task.git',
   deps: [
-    'aws-cdk-lib@2.109.0',
+    'aws-cdk-lib@2.137.0',
     'constructs@10.0.5',
   ],
   license: 'MIT-0',

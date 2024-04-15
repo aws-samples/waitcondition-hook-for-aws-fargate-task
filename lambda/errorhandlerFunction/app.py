@@ -33,24 +33,29 @@ def send_wait_condition_response(status, data, reason):
 def lambda_handler(event, context):
     print(event)
     cause = json.loads(event.get('Cause'))
+    conatiners = json.loads(cause.get('Containers'))
     stopped_reason = cause.get('StoppedReason')
 
     if cause: 
-        for container in cause.get('Containers'):
-            exit_code = container.get('ExitCode')
-            if exit_code and exit != 0: 
-                print(f"Container {container.get('ContainerArn')} failed with {exit_code}")
-                send_wait_condition_response('FAILURE', str(exit_code), stopped_reason)
-                return
-            elif not exit_code: #happens when task failed to be created, e.g., image cannot be pull
-                print(f"Container {container.get('ContainerArn')} failed, {stopped_reason}")
-                send_wait_condition_response('FAILURE', str(exit_code), stopped_reason)
-                return
-            else: #nasty edge case, just send failure and rollback
-                print(f"Container {container.get('ContainerArn')} failed, {stopped_reason}")
-                send_wait_condition_response('FAILURE', 'No Cause', stopped_reason)
-                return
-
+        if conatiners:
+            for container in conatiners:
+                exit_code = container.get('ExitCode')
+                if exit_code and exit != 0: 
+                    print(f"Container {container.get('ContainerArn')} failed with {exit_code}")
+                    send_wait_condition_response('FAILURE', str(exit_code), stopped_reason)
+                    return
+                elif not exit_code: #happens when task failed to be created, e.g., image cannot be pull
+                    print(f"Container {container.get('ContainerArn')} failed, {stopped_reason}")
+                    send_wait_condition_response('FAILURE', str(exit_code), stopped_reason)
+                    return
+                else: #nasty edge case, just send failure and rollback
+                    print(f"Container {container.get('ContainerArn')} failed, {stopped_reason}")
+                    send_wait_condition_response('FAILURE', 'No Cause', stopped_reason)
+                    return
+        else: 
+            print('something goes wrong')
+            send_wait_condition_response('FAILURE', 'No Cause', 'No reason')
+            return
     else: #nasty edge case, just send failure and rollback
         print('something goes wrong')
         send_wait_condition_response('FAILURE', 'No Cause', 'No reason')
