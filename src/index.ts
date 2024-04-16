@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { Duration, CfnWaitCondition, CfnWaitConditionHandle, Stack } from 'aws-cdk-lib';
 import { IVpc, Vpc } from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
@@ -65,7 +66,7 @@ export class FargateRunner extends Construct {
 
     //lambda function that send SUCCESS Signal back to WaitCondition
     const callbackFunction = new Function(this, 'CallbackFunction', {
-      code: Code.fromAsset('lambda/callbackFunction'),
+      code: Code.fromAsset(path.join(__dirname, ('../lambda/callbackFunction'))),
       runtime: Runtime.PYTHON_3_10,
       handler: 'app.lambda_handler',
       timeout: Duration.seconds(180),
@@ -77,7 +78,7 @@ export class FargateRunner extends Construct {
 
     //errorhandler function, to send FAILURE Signal back to WaitCondition
     const errorHandlerFunction = new Function(this, 'ErrorHandlerFunction', {
-      code: Code.fromAsset('lambda/errorhandlerFunction'),
+      code: Code.fromAsset(path.join(__dirname, ('../lambda/errorhandlerFunction'))),
       runtime: Runtime.PYTHON_3_10,
       handler: 'app.lambda_handler',
       role: executionRole,
