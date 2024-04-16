@@ -19,7 +19,7 @@ export class FargateRunnerTestStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
         // Define the VPC
-        const vpc = Vpc(this, 'MyVpc')
+        const vpc = new Vpc(this, 'MyVpc')
         // Define the Fargate Task
         const taskDefinition = new ecs.FargateTaskDefinition(this, 'MyTask', {});
         // Import exiting ecr repo
