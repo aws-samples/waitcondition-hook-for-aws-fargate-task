@@ -40,7 +40,7 @@ const template = Template.fromStack(stack);
 test('Lambda functions should be configured with appropriate properties and execution roles', () => {
   template.hasResourceProperties('AWS::Lambda::Function', {
     Handler: 'app.lambda_handler',
-    Runtime: 'python3.10',
+    Runtime: 'python3.12',
     Timeout: 180,
   });
   template.hasResourceProperties('AWS::IAM::Role', {

@@ -4,6 +4,7 @@ import { IVpc, Vpc } from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Code, Runtime, Function } from 'aws-cdk-lib/aws-lambda';
+import { LogGroup } from 'aws-cdk-lib/aws-logs';
 import * as stepfunctions from 'aws-cdk-lib/aws-stepfunctions';
 import * as stepfunctions_tasks from 'aws-cdk-lib/aws-stepfunctions-tasks';
 import * as cr from 'aws-cdk-lib/custom-resources';
@@ -67,7 +68,7 @@ export class FargateRunner extends Construct {
     //lambda function that send SUCCESS Signal back to WaitCondition
     const callbackFunction = new Function(this, 'CallbackFunction', {
       code: Code.fromAsset(path.join(__dirname, ('../lambda/callbackFunction'))),
-      runtime: Runtime.PYTHON_3_10,
+      runtime: Runtime.PYTHON_3_12,
       handler: 'app.lambda_handler',
       timeout: Duration.seconds(180),
       environment: {
@@ -79,7 +80,7 @@ export class FargateRunner extends Construct {
     //errorhandler function, to send FAILURE Signal back to WaitCondition
     const errorHandlerFunction = new Function(this, 'ErrorHandlerFunction', {
       code: Code.fromAsset(path.join(__dirname, ('../lambda/errorhandlerFunction'))),
-      runtime: Runtime.PYTHON_3_10,
+      runtime: Runtime.PYTHON_3_12,
       handler: 'app.lambda_handler',
       role: executionRole,
       timeout: Duration.seconds(180),
@@ -144,12 +145,18 @@ export class FargateRunner extends Construct {
       sid: 'RunTask',
     }));
 
+    // define a log group for statemachine
+    const logGroup = new LogGroup(this, 'FargateRunnerStateMachineLogGroup');
 
     // define the statemachine
     const stateMachine = new stepfunctions.StateMachine(this, 'FargateRunnerStateMachine', {
       definitionBody: stepfunctions.DefinitionBody.fromChainable(chain),
       // timeout: timeoutDuration
       // role: stateMachineExecutionRole,
+      logs: {
+        destination: logGroup,
+        level: stepfunctions.LogLevel.ALL,
+      },
     });
 
     //define triggering custom resource

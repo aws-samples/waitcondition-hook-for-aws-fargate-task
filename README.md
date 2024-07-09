@@ -11,7 +11,7 @@ WaitCondition hook for AWS Fargate tasks is a AWS CDK Construct that helps build
 
 ### Install the package: 
 ```bash
-yarn add aitcondition-hook-for-aws-fargate-task
+yarn add waitcondition-hook-for-aws-fargate-task
 ```
 ### Usage:
 ```typescript
